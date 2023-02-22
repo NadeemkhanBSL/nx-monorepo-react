@@ -23,7 +23,7 @@ export function App() {
         </li>
       </ul>
       <Routes>
-        <Route path="/" element={<NxWelcome title="container" />} />
+        <Route path="/" element={<NxWelcome/>} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
       </Routes>
