@@ -21,6 +21,15 @@ export function NxWelcome() {
     setData(response.data)
     console.log(response)
   }
+  const [allCartItem,setAllCartItem]=useState([] as any)
+  const [CartItem,setCartItem]=useState({} as any)
+  const handleAddItem=(item:{})=>{
+    setCartItem(item)
+  }
+  useEffect(()=>{
+    setAllCartItem([...allCartItem,CartItem])
+    localStorage.setItem("cartItem",JSON.stringify(allCartItem))
+  },[CartItem])
   return (
     <>
       {
@@ -36,7 +45,7 @@ export function NxWelcome() {
               <span ><span style={{fontWeight:"bold"}}>Price:</span>{item.price}</span>
               <br />
               {/* <button >Add To Cart</button> */}
-              <Button variant="contained">Add To Cart</Button>
+              <Button variant="contained" onClick={()=>handleAddItem(item)}>Add To Cart</Button>
             </div>
           )
         })
