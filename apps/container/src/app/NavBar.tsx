@@ -32,7 +32,7 @@ export const NavBar = () => {
                     </IconButton>
                 </Paper></Grid>
                 <Grid item xs={2}></Grid>
-                <Grid item xs={0.8}><Link to="/tempcart"><ShoppingCartIcon fontSize="large" /></Link></Grid>
+                <Grid item xs={0.8}><Link to="/cart"><ShoppingCartIcon fontSize="large" /></Link></Grid>
             </Grid>
         </div>
     )
