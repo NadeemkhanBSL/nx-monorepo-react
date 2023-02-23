@@ -36,7 +36,7 @@ export const NavBar = ({ hadleSearch }: { hadleSearch: any }) => {
                     </IconButton>
                 </Paper></Grid>
                 <Grid item xs={2}></Grid>
-                <Grid item xs={0.8}><Link to="/tempcart">
+                <Grid item xs={0.8}><Link to="/cart">
                     <Badge badgeContent={badgeCount} style={{position:"relative",top:"5px"}} color="primary">
                         <ShoppingCartIcon fontSize="large" />
                     </Badge>
