@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import {Button} from "@mui/material"
+import CircularProgress from '@mui/material/CircularProgress';
 
 interface Item {
   id: number;
@@ -10,28 +11,43 @@ interface Item {
   price:string
 }
 
-export function NxWelcome() {
+export function NxWelcome({searchText}:{searchText:string}) {
   const [data,setData]=useState<Item[]>([]);
+  const [cartListcopy, setCartListcopy] = useState<Item[]>([] as any)
+  const [spinner,setSpinner]=useState(false)
 
   useEffect(()=>{
     getData() 
   },[])
   const getData=async()=>{
+    setSpinner(true)
     const response =await axios.get("https://fakestoreapi.com/products")
-    setData(response.data)
+    if(response.status==200){
+      setSpinner(false)
+      setData(response.data)
+      setCartListcopy(response?.data)
+    }
     console.log(response)
   }
-  const [allCartItem,setAllCartItem]=useState([] as any)
-  const [CartItem,setCartItem]=useState({} as any)
-  const handleAddItem=(item:{})=>{
-    setCartItem(item)
+  
+  const handleAddItem=async(item:{})=>{
+    console.log(item)
+    // setCartItem(item)
+    // const payload={
+    //   item
+    // }
+    const response=await axios.post("http://localhost:4004/addcart",item)
+    console.log("res==>",response)
   }
   useEffect(()=>{
-    setAllCartItem([...allCartItem,CartItem])
-    localStorage.setItem("cartItem",JSON.stringify(allCartItem))
-  },[CartItem])
+    const result=cartListcopy.filter((item)=>item.title.toLowerCase().includes(searchText.toLowerCase()))
+    setData(result)
+},[searchText])
   return (
     <>
+    {spinner? <div style={{position:"relative",left:"50%",top:"250px"}}>
+      <CircularProgress color="success" />
+      </div>: null}
       {
         data.map((item,i)=>{
           return(
@@ -42,7 +58,7 @@ export function NxWelcome() {
               <br />
               <span>{item.description.substring(0,20)}...</span>
               <br />
-              <span ><span style={{fontWeight:"bold"}}>Price:</span>{item.price}</span>
+              <span ><span style={{fontWeight:"bold"}}>Price:$</span>{item.price}</span>
               <br />
               {/* <button >Add To Cart</button> */}
               <Button variant="contained" onClick={()=>handleAddItem(item)}>Add To Cart</Button>

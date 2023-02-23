@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./app.module.css"
-
+import {useState,useEffect} from "react"
 import NxWelcome from './nx-welcome';
 
 import { Link, Route, Routes } from 'react-router-dom';
@@ -12,10 +12,15 @@ const Cart = React.lazy(() => import('cart/Module'));
 const Products = React.lazy(() => import('products/Module'));
 
 export function App() {
-  const data="yuvi"
+  const [searchText,setSearchText]=useState("")
+
+  const hadleSearch=(e:any)=>{
+    console.log(e.target.value)
+    setSearchText(e.target.value)
+  }
   return (
     <React.Suspense fallback={null}>
-      <NavBar/>
+      <NavBar hadleSearch={hadleSearch} />
       {/* <ul>
         <li>
           <Link to="/">Home</Link>
@@ -28,10 +33,10 @@ export function App() {
         </li>
       </ul> */}
       <Routes>
-        <Route path="/" element={<NxWelcome/>} />
-        <Route path="/cart" element={<Cart data={data} />} />
+        <Route path="/" element={<NxWelcome searchText={searchText}/>} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/tempcart" element={<TempCart />} />
+        <Route path="/tempcart" element={<TempCart/>} />
       </Routes>
     </React.Suspense>
   );

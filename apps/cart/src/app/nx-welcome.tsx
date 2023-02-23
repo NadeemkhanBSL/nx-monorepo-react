@@ -1,16 +1,16 @@
-/*
- * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- This is a starter component and can be deleted.
- * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Delete this file and get started with your project!
- * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- */
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 export function NxWelcome() {
-  const item = sessionStorage.getItem("cartItem")
-  const result = item ? JSON.parse(item) : undefined
-  console.log("result",result)
-  console.log("item",item)
+  const [cartList,setCartList]=useState([] as any)
+    useEffect(()=>{
+        getData()
+    },[])
+    const getData=async()=>{
+        const response=await axios.get("http://localhost:4000/getcarts")
+        setCartList(response)
+        console.log("list",response)
+    }
   return (
     <>
       <h1>Cart</h1>
