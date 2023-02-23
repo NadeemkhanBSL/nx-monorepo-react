@@ -50,6 +50,7 @@
           console.log("idddd",id)
           const response = await axios.delete(`http://localhost:4004/delete/${id}`)
           console.log("delete res",response)
+          getData()
       }
       return (
           <div>

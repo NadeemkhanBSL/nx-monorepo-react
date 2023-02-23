@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import {Button} from "@mui/material"
 import CircularProgress from '@mui/material/CircularProgress';
+import {useNavigate} from "react-router-dom"
 
 interface Item {
   id: number;
@@ -12,6 +13,7 @@ interface Item {
 }
 
 export function NxWelcome({searchText}:{searchText:string}) {
+  const navigate=useNavigate()
   const [data,setData]=useState<Item[]>([]);
   const [cartListcopy, setCartListcopy] = useState<Item[]>([] as any)
   const [spinner,setSpinner]=useState(false)
@@ -38,6 +40,9 @@ export function NxWelcome({searchText}:{searchText:string}) {
     // }
     const response=await axios.post("http://localhost:4004/addcart",item)
     console.log("res==>",response)
+    if(response.status==200){
+      navigate("/cart")
+    }
   }
   useEffect(()=>{
     const result=cartListcopy.filter((item)=>item.title.toLowerCase().includes(searchText.toLowerCase()))

@@ -1,4 +1,4 @@
-import React from "react"
+import React,{useEffect,useState} from "react"
 import { Grid } from "@mui/material"
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Link } from 'react-router-dom';
@@ -9,12 +9,20 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
+import axios from "axios";
 
 export const NavBar = ({ hadleSearch }: { hadleSearch: any }) => {
-    const item = sessionStorage.getItem("bagdeCount")
-  const badgeCount = item ? JSON.parse(item) : undefined
-  console.log("count==>",badgeCount)
-  console.log("item==>",item)
+    const [badgeCount,setbadgeCount]=useState("")
+    useEffect(()=>{
+        getData()
+    },[badgeCount])
+    const getData=async()=>{
+        const response = await axios.get("http://localhost:4004/getcarts")
+        setbadgeCount(response?.data?.length)
+    }
+//     const item = sessionStorage.getItem("bagdeCount")
+//   const count = item ? JSON.parse(item) : undefined
+//   setbadgeCount(count)
 
     return (
         <div style={{ backgroundColor: "#00adf2", padding: "5px" }}>
