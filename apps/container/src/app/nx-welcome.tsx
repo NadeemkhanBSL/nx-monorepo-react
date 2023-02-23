@@ -12,7 +12,7 @@ interface Item {
   price:string
 }
 
-export function NxWelcome({searchText}:{searchText:string}) {
+export function NxWelcome({searchText,handleBadgeCount}:{searchText:string,handleBadgeCount:any}) {
   const navigate=useNavigate()
   const [data,setData]=useState<Item[]>([]);
   const [cartListcopy, setCartListcopy] = useState<Item[]>([] as any)
@@ -33,6 +33,7 @@ export function NxWelcome({searchText}:{searchText:string}) {
   }
   
   const handleAddItem=async(item:{})=>{
+   
     console.log(item)
     // setCartItem(item)
     // const payload={
@@ -41,7 +42,7 @@ export function NxWelcome({searchText}:{searchText:string}) {
     const response=await axios.post("http://localhost:4004/addcart",item)
     console.log("res==>",response)
     if(response.status==200){
-      navigate("/cart")
+      handleBadgeCount()
     }
   }
   useEffect(()=>{

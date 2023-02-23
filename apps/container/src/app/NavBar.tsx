@@ -11,15 +11,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 import axios from "axios";
 
-export const NavBar = ({ hadleSearch }: { hadleSearch: any }) => {
-    const [badgeCount,setbadgeCount]=useState("")
-    useEffect(()=>{
-        getData()
-    },[badgeCount])
-    const getData=async()=>{
-        const response = await axios.get("http://localhost:4004/getcarts")
-        setbadgeCount(response?.data?.length)
-    }
+export const NavBar = ({ hadleSearch ,badgeCount}: { hadleSearch: any,badgeCount:any }) => {
+   
 //     const item = sessionStorage.getItem("bagdeCount")
 //   const count = item ? JSON.parse(item) : undefined
 //   setbadgeCount(count)
