@@ -54,11 +54,12 @@ export function NxWelcome({searchText,handleBadgeCount}:{searchText:string,handl
     {spinner? <div style={{position:"relative",left:"50%",top:"250px"}}>
       <CircularProgress color="success" />
       </div>: null}
+      <div style={{position:"relative",top:"50px"}}>
       {
         data.map((item,i)=>{
           return(
             <div style={{border:"1px solid black",width:"20%",float:"left",textAlign:"center",margin:"20px",padding:"10px",boxShadow:"0px 0px 5px black"}} key={i}>
-              <img  width={200} height={200} src={item.image} alt="" />
+              <img  width={"80%"} height={200}  src={item.image} alt="" />
               <br />
               <span style={{fontWeight:"bold"}}>{item.title.substring(0,20)}...</span>
               <br />
@@ -72,6 +73,7 @@ export function NxWelcome({searchText,handleBadgeCount}:{searchText:string,handl
           )
         })
       }
+      </div>
     </>
   );
 }

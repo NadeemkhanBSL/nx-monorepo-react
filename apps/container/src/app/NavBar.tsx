@@ -13,12 +13,14 @@ import axios from "axios";
 
 export const NavBar = ({ hadleSearch ,badgeCount}: { hadleSearch: any,badgeCount:any }) => {
    
-//     const item = sessionStorage.getItem("bagdeCount")
-//   const count = item ? JSON.parse(item) : undefined
+    const item = sessionStorage.getItem("bagdeCount")
+  const count = item ? JSON.parse(item) : undefined
+  console.log(count)
+  
 //   setbadgeCount(count)
 
     return (
-        <div style={{ backgroundColor: "#00adf2", padding: "5px" }}>
+        <div style={{ backgroundColor: "#00adf2", padding: "5px",position:"fixed",width:"100%",zIndex:"1"}}>
             <Grid container >
                 <Grid item xs={0.2}></Grid>
                 <Grid item xs={3}><Link to="/"><LocalShippingIcon fontSize="large" style={{ color: "white", position: "relative", top: "3px" }} /></Link><span style={{ fontWeight: "bold", fontSize: "22px", position: "relative", color: "white", bottom: "5px" }}>E-Comm</span></Grid>
@@ -38,7 +40,7 @@ export const NavBar = ({ hadleSearch ,badgeCount}: { hadleSearch: any,badgeCount
                 </Paper></Grid>
                 <Grid item xs={2}></Grid>
                 <Grid item xs={0.8}><Link to="/cart">
-                    <Badge badgeContent={badgeCount} style={{position:"relative",top:"5px"}} color="primary">
+                    <Badge badgeContent={badgeCount} showZero style={{position:"relative",top:"5px"}} color="primary">
                         <ShoppingCartIcon fontSize="large" />
                     </Badge>
                 </Link></Grid>

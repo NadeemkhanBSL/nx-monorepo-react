@@ -14,7 +14,7 @@ const Products = React.lazy(() => import('products/Module'));
 
 export function App() {
   const [searchText,setSearchText]=useState("")
-  const [badgeCount,setbadgeCount]=useState("")
+  const [badgeCount,setbadgeCount]=useState(0)
 
   const hadleSearch=(e:any)=>{
     console.log(e.target.value)
@@ -45,7 +45,7 @@ export function App() {
       </ul> */}
       <Routes>
         <Route path="/" element={<NxWelcome handleBadgeCount={handleBadgeCount} searchText={searchText}/>} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart  handleBadgeCount={handleBadgeCount}/>} />
         <Route path="/products" element={<Products />} />
         <Route path="/tempcart" element={<TempCart  handleBadgeCount={ handleBadgeCount}/>} />
       </Routes>
