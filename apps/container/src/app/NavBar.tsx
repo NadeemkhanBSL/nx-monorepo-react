@@ -39,7 +39,7 @@ export const NavBar = ({ hadleSearch ,badgeCount}: { hadleSearch: any,badgeCount
                     </IconButton>
                 </Paper></Grid>
                 <Grid item xs={2}></Grid>
-                <Grid item xs={0.8}><Link to="/tempcart">
+                <Grid item xs={0.8}><Link to="/cart">
                     <Badge badgeContent={badgeCount} showZero style={{position:"relative",top:"5px"}} color="primary">
                     <Tooltip title="Go To Cart" arrow><ShoppingCartIcon fontSize="large" /></Tooltip>
                     </Badge>

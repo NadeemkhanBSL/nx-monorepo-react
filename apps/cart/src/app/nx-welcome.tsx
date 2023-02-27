@@ -13,7 +13,7 @@ interface Item {
     title: string;
     description: string;
     image: string;
-    price: string;
+    price: number;
     rating: { rate: number }
 }
 export function NxWelcome({ handleBadgeCount }: { handleBadgeCount: any }) {
@@ -58,7 +58,7 @@ export function NxWelcome({ handleBadgeCount }: { handleBadgeCount: any }) {
             const b = a?.reduce((curr: any, next: any) => curr + next)
             const totalPriceCount = Math.round(b)
             const totalCount = response?.data?.length
-            setTotalPrice({ tprice: totalPriceCount, length: totalCount })
+            setTotalPrice({ tprice: totalPriceCount * 83, length: totalCount })
         }
 
     }
@@ -78,6 +78,8 @@ export function NxWelcome({ handleBadgeCount }: { handleBadgeCount: any }) {
         }
         getData()
     }
+    const convertDollarToIndian=83
+
     return (
         <div style={{ position: "relative", top: "50px" }}>
             <h1> Cart</h1>
@@ -109,7 +111,7 @@ export function NxWelcome({ handleBadgeCount }: { handleBadgeCount: any }) {
                                                 </Grid>
                                                 <br />
                                                 <Grid item xs={12}>
-                                                    <span><span style={{ fontWeight: "bold" }}>$</span>{item.price}</span>
+                                                <span><span style={{ fontWeight: "bold" }}>₹</span>{Math.round(item.price) * convertDollarToIndian}</span>
                                                 </Grid> <br />
                                                 <Grid item xs={12}>
                                                     <span><span style={{ fontWeight: "bold" }}>Rating:<Rating name="read-only" value={item.rating.rate} readOnly /></span>{item.rating.rate}</span>
