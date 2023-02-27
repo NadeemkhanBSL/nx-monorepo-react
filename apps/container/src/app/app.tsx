@@ -46,7 +46,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<NxWelcome handleBadgeCount={handleBadgeCount} searchText={searchText}/>} />
         <Route path="/cart" element={<Cart  handleBadgeCount={handleBadgeCount}/>} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Products handleBadgeCount={handleBadgeCount} searchText={searchText}/>} />
         <Route path="/tempcart" element={<TempCart  handleBadgeCount={ handleBadgeCount}/>} />
       </Routes>
     </React.Suspense>

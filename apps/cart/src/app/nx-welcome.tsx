@@ -16,8 +16,7 @@ interface Item {
     price: string;
     rating: { rate: number }
 }
-export function NxWelcome({handleBadgeCount}:{ handleBadgeCount:any}) {
-    // export const TempCart = ( {handleBadgeCount}:{ handleBadgeCount:any}) => {
+export function NxWelcome({ handleBadgeCount }: { handleBadgeCount: any }) {
     const [cartList, setCartList] = useState<Item[]>([] as any)
     const [spinner, setSpinner] = useState(false)
     const [noData, setNoData] = useState("")
@@ -54,7 +53,6 @@ export function NxWelcome({handleBadgeCount}:{ handleBadgeCount:any}) {
             }, {});
             setDuplicateCount(itemCounts)
 
-            sessionStorage.setItem("bagdeCount", JSON.stringify(response?.data?.length))
             const arrayPrice = response?.data
             const a = arrayPrice?.map((item: any) => item.price)
             const b = a?.reduce((curr: any, next: any) => curr + next)
@@ -69,19 +67,19 @@ export function NxWelcome({handleBadgeCount}:{ handleBadgeCount:any}) {
         const response = await axios.delete(`http://localhost:4004/delete/${id}`)
         console.log("delete res", response)
         if (response.status == 200) {
-            handleBadgeCount()            
+            handleBadgeCount()
         }
         getData()
     }
     const handleEmptyCart = async () => {
         const response = await axios.delete(`http://localhost:4004/deleteall`)
         if (response.status == 204) {
-            handleBadgeCount()            
+            handleBadgeCount()
         }
         getData()
     }
     return (
-        <div style={{position:"relative",top:"50px"}}>
+        <div style={{ position: "relative", top: "50px" }}>
             <h1> Cart</h1>
             <br />
             {
@@ -99,7 +97,7 @@ export function NxWelcome({handleBadgeCount}:{ handleBadgeCount:any}) {
                         {
                             cartList?.map((item, i) => {
                                 return (
-                                    <div key={i} style={{ border: "1px sold black", boxShadow: "0px 0px 3px black", marginTop: "10px",padding:"3px" }}>
+                                    <div key={i} style={{ border: "1px sold black", boxShadow: "0px 0px 3px black", marginTop: "10px", padding: "3px" }}>
                                         <Grid container>
                                             <Grid item xs={0.4}></Grid>
                                             <Grid item xs={2.6}>
@@ -131,7 +129,7 @@ export function NxWelcome({handleBadgeCount}:{ handleBadgeCount:any}) {
                             })
                         }
                         <br />
-                       <Grid container>
+                        <Grid container>
                             <Grid item xs={5}></Grid>
                             <Grid item xs={1.5}><h3>TotalCount: {totalPrice?.length}</h3></Grid>
                             {/* <Grid item xs={1}></Grid> */}

@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react"
-import { Grid } from "@mui/material"
+import { Grid, Tooltip } from "@mui/material"
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
@@ -23,7 +23,7 @@ export const NavBar = ({ hadleSearch ,badgeCount}: { hadleSearch: any,badgeCount
         <div style={{ backgroundColor: "#00adf2", padding: "5px",position:"fixed",width:"100%",zIndex:"1"}}>
             <Grid container >
                 <Grid item xs={0.2}></Grid>
-                <Grid item xs={3}><Link to="/"><LocalShippingIcon fontSize="large" style={{ color: "white", position: "relative", top: "3px" }} /></Link><span style={{ fontWeight: "bold", fontSize: "22px", position: "relative", color: "white", bottom: "5px" }}>E-Comm</span></Grid>
+                <Grid item xs={3}><Link to="/products"><Tooltip title="Go To Product List" arrow><LocalShippingIcon fontSize="large" style={{position: "relative", top: "3px" }} /></Tooltip></Link><span style={{ fontWeight: "bold", fontSize: "22px", position: "relative", color: "white", bottom: "5px" }}>E-Comm</span></Grid>
                 <Grid item xs={6}> <Paper
                     component="form"
                     sx={{ p: '2px 2px', display: 'flex', alignItems: 'center', width: 400, height: 25 }}
@@ -39,9 +39,9 @@ export const NavBar = ({ hadleSearch ,badgeCount}: { hadleSearch: any,badgeCount
                     </IconButton>
                 </Paper></Grid>
                 <Grid item xs={2}></Grid>
-                <Grid item xs={0.8}><Link to="/cart">
+                <Grid item xs={0.8}><Link to="/tempcart">
                     <Badge badgeContent={badgeCount} showZero style={{position:"relative",top:"5px"}} color="primary">
-                        <ShoppingCartIcon fontSize="large" />
+                    <Tooltip title="Go To Cart" arrow><ShoppingCartIcon fontSize="large" /></Tooltip>
                     </Badge>
                 </Link></Grid>
             </Grid>

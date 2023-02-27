@@ -3,10 +3,10 @@ import styles from './app.module.css';
 
 import NxWelcome from './nx-welcome';
 
-export function App() {
+export function App({searchText,handleBadgeCount}:{searchText:string,handleBadgeCount:any}) {
   return (
     <>
-      <NxWelcome title="products" />
+      <NxWelcome  searchText={searchText} handleBadgeCount={handleBadgeCount}/>
 
       <div />
     </>
